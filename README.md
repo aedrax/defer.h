@@ -30,11 +30,11 @@ int main()
         printf("Cleaning up resource %d\n", *resource);
         free(resource);
     });
-    // End of block - resource is automatically cleaned up here
 
     // Do something with the resource
     printf("Using resource %d\n", *resource);
     return 0;
+    // End of block - resource is automatically cleaned up here
 }
 ```
 
@@ -46,36 +46,6 @@ a message to the console.
 By using the `DEFER` macro in this way, we can simplify resource management and
 ensure that resources are automatically cleaned up when they are no longer
 needed.
-
-#### Example
-Here is an example program that uses defer.h to automatically cleanup a
-dynamically allocated integer when it is no longer needed:
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include "defer.h"
-
-int main()
-{
-    int *resource = malloc(sizeof(int));
-    *resource = 42;
-    printf("Allocated resource %d\n", *resource);
-    DEFER({
-        printf("Cleaning up resource %d\n", *resource);
-        free(resource);
-    });
-    // End of block - resource is automatically cleaned up here
-
-    // Do something with the resource
-    printf("Using resource %d\n", *resource);
-    return 0;
-}
-```
-
-In this example, we allocate a resource using malloc, and then use the `DEFER`
-macro to define a cleanup function that frees the resource when the block ends.
-We also use the resource inside the block and print its value to the console.
 
 When the block ends, the cleanup function defined by the `DEFER` macro is
 automatically called, freeing the resource and ensuring that it is not leaked.

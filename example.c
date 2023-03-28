@@ -11,9 +11,9 @@ int main()
         printf("Cleaning up resource %d\n", *resource);
         free(resource);
     });
-    // End of block - resource is automatically cleaned up here
 
     // Do something with the resource
     printf("Using resource %d\n", *resource);
     return 0;
+    // End of block - resource is automatically cleaned up here
 }
